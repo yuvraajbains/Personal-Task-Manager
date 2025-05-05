@@ -1,14 +1,14 @@
-const Task = require('../models/Task'); // Mongoose model
+const Task = require('../models/Task'); 
 
 // Create Task
 const createTask = async (req, res) => {
-  const { title, description, deadline } = req.body; // 🆕 Accept deadline
+  const { title, description, deadline } = req.body; 
 
   try {
     const newTask = new Task({
       title,
       description,
-      deadline, // 🆕 Save deadline if provided
+      deadline, 
       username: req.user
     });
 
@@ -23,7 +23,7 @@ const createTask = async (req, res) => {
 // Get All Tasks for User (sorted by deadline)
 const getTasks = async (req, res) => {
   try {
-    const userTasks = await Task.find({ username: req.user }).sort({ deadline: 1 }); // 🆕 Sort tasks by deadline (soonest first)
+    const userTasks = await Task.find({ username: req.user }).sort({ deadline: 1 });
     res.json(userTasks);
   } catch (error) {
     console.error(error);
@@ -34,7 +34,7 @@ const getTasks = async (req, res) => {
 // Update Task
 const updateTask = async (req, res) => {
   const { id } = req.params;
-  const { title, description, deadline, completed } = req.body; // 🆕 Accept deadline and completed in update too
+  const { title, description, deadline, completed } = req.body; 
 
   try {
     const task = await Task.findOne({ _id: id, username: req.user });
@@ -43,9 +43,9 @@ const updateTask = async (req, res) => {
     // Update fields if provided
     task.title = title || task.title;
     task.description = description || task.description;
-    task.deadline = deadline || task.deadline; // 🆕 allow updating deadline
+    task.deadline = deadline || task.deadline; 
     if (completed !== undefined) {
-      task.completed = completed; // 🆕 allow marking complete/incomplete
+      task.completed = completed; 
     }
 
     await task.save();

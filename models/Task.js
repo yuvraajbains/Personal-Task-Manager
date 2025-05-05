@@ -14,11 +14,11 @@ const taskSchema = new mongoose.Schema({
     required: true
   },
   deadline: {
-    type: Date // 🆕 New field for deadlines
+    type: Date 
   },
   completed: {
     type: Boolean,
-    default: false // 🆕 New field for task completion status
+    default: false 
   }
 }, { timestamps: true });
 

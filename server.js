@@ -1,4 +1,4 @@
-require('dotenv').config(); // <- MUST BE FIRST
+require('dotenv').config(); 
 
 const express = require('express');
 const cors = require('cors');
@@ -13,11 +13,11 @@ app.use(express.json());
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
-const profileRoutes = require('./routes/profileRoutes'); // ✅ New profile routes!
+const profileRoutes = require('./routes/profileRoutes'); 
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
-app.use('/api/profile', profileRoutes); // ✅ New route for profile handling!
+app.use('/api/profile', profileRoutes); 
 
 // Server + MongoDB connection
 const PORT = process.env.PORT || 5000;
